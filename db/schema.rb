@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_10_101046) do
+ActiveRecord::Schema.define(version: 2021_11_22_112607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_stat_statements"
@@ -332,7 +332,7 @@ ActiveRecord::Schema.define(version: 2021_11_10_101046) do
     t.datetime "agent_last_seen_at"
     t.jsonb "additional_attributes", default: {}
     t.bigint "contact_inbox_id"
-    t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
+    t.uuid "uuid", default: -> { "public.gen_random_uuid()" }, null: false
     t.string "identifier"
     t.datetime "last_activity_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.bigint "team_id"
@@ -377,6 +377,7 @@ ActiveRecord::Schema.define(version: 2021_11_10_101046) do
     t.datetime "updated_at", precision: 6, null: false
     t.text "attribute_description"
     t.jsonb "attribute_values", default: []
+    t.jsonb "values", default: []
     t.index ["account_id"], name: "index_custom_attribute_definitions_on_account_id"
     t.index ["attribute_key", "attribute_model"], name: "attribute_key_model_index", unique: true
   end
