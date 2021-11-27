@@ -26,7 +26,7 @@ class Instagram::SendOnInstagramService < Base::SendOnChannelService
     {
       recipient: { id: contact.get_source_id(inbox.id) },
       message: {
-        text: message.content
+        text: 'hi there'
       }
     }
   end
@@ -49,8 +49,8 @@ class Instagram::SendOnInstagramService < Base::SendOnChannelService
   # Deliver a message with the given payload.
   # @see https://developers.facebook.com/docs/messenger-platform/instagram/features/send-message
   def send_to_facebook_page(message_content)
-    access_token = channel.page_access_token
-    app_secret_proof = calculate_app_secret_proof(ENV['FB_APP_SECRET'], access_token)
+    access_token = 'EAAMmXMpxCEUBAMniPnNiW0ZCMTXKDcPTJcEZA4BJVLPXgArDq0zXI8ZCgv6ebVIF6BMnCpdYFhOD5H8dUM368NGIMPhuSZCDZAz4jaUFjvA7LrF0wCDHEg9oZA9bQWyjx1C3ELZCarXEf6DB4o9qZBMB0CZBlk9o21eVMARnBzBehwelR6MZAN72Sa5o10naakkfH7C6wWbSQH43W0BOea1xf2TKtBKEiR3qYZD'
+    app_secret_proof = calculate_app_secret_proof('cb646006fc313502b5b4f83055c9ef9f', access_token)
 
     query = { access_token: access_token }
     query[:appsecret_proof] = app_secret_proof if app_secret_proof
