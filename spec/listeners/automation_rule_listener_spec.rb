@@ -16,7 +16,7 @@ describe AutomationRuleListener do
   end
 
   before do
-    automation_rule.update_attribute!('actions',
+    automation_rule.update!(actions:
                                       [
                                         {
                                           'action_name' => 'send_email_to_team', 'action_params' => {
@@ -32,7 +32,7 @@ describe AutomationRuleListener do
 
   describe '#conversation_status_changed' do
     context 'when rule matches' do
-      it 'triggers automation rule' do
+      it 'triggers automation rule to assign team' do
         expect(conversation.team_id).not_to eq(team.id)
 
         automation_rule
@@ -40,6 +40,27 @@ describe AutomationRuleListener do
 
         conversation.reload
         expect(conversation.team_id).to eq(team.id)
+      end
+
+      it 'triggers automation rule to add label' do
+        expect(conversation.labels).to eq([])
+
+        automation_rule
+        listener.conversation_status_changed(event)
+
+        conversation.reload
+        expect(conversation.labels.pluck(:name)).to eq(%w[support priority_customer])
+      end
+
+      it 'triggers automation rule to assign best agents' do
+        expect(conversation.assignee).to be_nil
+
+        automation_rule
+        listener.conversation_status_changed(event)
+
+        conversation.reload
+
+        expect(conversation.assignee).to eq(user)
       end
     end
   end
