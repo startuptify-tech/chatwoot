@@ -17,14 +17,14 @@
           </woot-button>
         </woot-dropdown-item>
         <woot-dropdown-item v-if="globalConfig.chatwootInboxToken">
-          <woot-button
+<!--          <woot-button
             variant="clear"
             size="small"
-            class=" change-accounts--button"
+            class=" change-accounts&#45;&#45;button"
             @click="$emit('show-support-chat-window')"
           >
             Contact Support
-          </woot-button>
+          </woot-button>-->
         </woot-dropdown-item>
         <woot-dropdown-item>
           <woot-button
