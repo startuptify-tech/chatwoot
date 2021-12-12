@@ -32,7 +32,7 @@
 en:
   hello: "Hello world"
   messages:
-    reset_password_success: Woot! Request for password reset is successful. Check your mail for instructions.
+    reset_password_success: Request for password reset is successful. Check your mail for instructions.
     reset_password_failure: Uh ho! We could not find any user with the specified email.
 
   errors:
@@ -43,7 +43,7 @@ en:
       failed: Signup failed
     contacts:
       import:
-        failed: File is blank  
+        failed: File is blank
 
   reports:
     period: Reporting period %{since} to %{until}
